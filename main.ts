@@ -517,6 +517,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     Facing = 1
+    FacingSH = 1
     if (WeaponEquip == 1) {
         Sword.setImage(img`
             . . . . . . . . . . . . . . . e . a a a a . 
@@ -525,7 +526,28 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . d d d d d d d d d b e . a a a a . 
             . . . . . . . . . . . . . . . e . . . . . . 
             `)
-        Sword.z = -1
+        Sword.z = 1
+    }
+    if (ShieldEquip == 1) {
+        Sword.setImage(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . 5 5 5 5 5 5 5 . . . . . . . . 
+            5 5 b b b b b b 5 . . . . . . . 
+            5 b b b b b b b 5 5 . . . . . . 
+            5 b b b b b f b b 5 . . . . . . 
+            5 b b b b f e b b 5 . . . . . . 
+            5 b b b f a a a b b 5 . . . . . 
+            5 5 b b b a a a b b 5 . . . . . 
+            . 5 b b b a a a f b 5 . . . . . 
+            . 5 b b b b f f f b 5 . . . . . 
+            . 5 5 b b b b b b b 5 . . . . . 
+            . . 5 5 b b b b b 5 5 . . . . . 
+            . . . 5 5 b b b b 5 . . . . . . 
+            . . . . 5 5 5 5 5 5 . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `)
+        Sword.z = -2
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`EVENTTILE`, function (sprite, location) {
@@ -687,7 +709,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`EVENTTILE`, function (sprite,
             . . . . . . 5 b b f b b b b b 5 
             . . . . . . 5 b b e f b b b b 5 
             . . . . . 5 b b b e e f b b b 5 
-            . . . . . 5 b b e e b b b b 5 5 
+            . . . . . 5 b b b e b b b b 5 5 
             . . . . . 5 b f e e b b b b 5 . 
             . . . . . 5 b f f f b b b b 5 . 
             . . . . . 5 b b b b b b b 5 5 . 
@@ -721,6 +743,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`EVENTTILE`, function (sprite,
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     Facing = 2
+    FacingSH = 2
     if (WeaponEquip == 1) {
         Sword.setImage(img`
             . a a a a . e . . . . . . . . . . . . . . . 
@@ -731,10 +754,32 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
             `)
         Sword.z = 1
     }
+    if (ShieldEquip == 1) {
+        Shield.setImage(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . 5 5 5 5 5 5 5 . 
+            . . . . . . . 5 b b b b b b 5 5 
+            . . . . . . 5 5 b b b b b b b 5 
+            . . . . . . 5 b b f b b b b b 5 
+            . . . . . . 5 b b e f b b b b 5 
+            . . . . . 5 b b a a a f b b b 5 
+            . . . . . 5 b b a a a b b b 5 5 
+            . . . . . 5 b f a a a b b b 5 . 
+            . . . . . 5 b f f f b b b b 5 . 
+            . . . . . 5 b b b b b b b 5 5 . 
+            . . . . . 5 5 b b b b b 5 5 . . 
+            . . . . . . 5 b b b b 5 5 . . . 
+            . . . . . . 5 5 5 5 5 5 . . . . 
+            . . . . . . . . . . . . . . . . 
+            `)
+        Shield.z = -2
+    }
 })
 let projectile: Sprite = null
 let WeaponTester: Sprite = null
 let SwordStationary: Sprite = null
+let FacingSH = 0
 let Magic: Sprite = null
 let Facing = 0
 let Shield: Sprite = null
